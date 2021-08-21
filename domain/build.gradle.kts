@@ -1,13 +1,8 @@
 plugins {
-    id("java-library")
-    id("kotlin")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    id("kotlin-platform-common")
 }
 
 dependencies {
     implementation(Dependencies.KotlinX.coroutinesCore)
+    implementation(Dependencies.KotlinX.datetime)
 }

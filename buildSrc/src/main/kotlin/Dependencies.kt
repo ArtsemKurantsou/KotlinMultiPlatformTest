@@ -9,6 +9,9 @@ object Dependencies {
         private const val coroutinesVersion = "1.5.1"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+        private const val datetimeVersion = "0.2.1"
+        const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:$datetimeVersion"
     }
 
     object Android {
