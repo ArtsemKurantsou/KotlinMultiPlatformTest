@@ -1,0 +1,28 @@
+CREATE TABLE News (
+    sourceId TEXT NOT NULL,
+    author TEXT,
+    title TEXT,
+    description TEXT,
+    url TEXT NOT NULL,
+    imageUrl TEXT,
+    publishDate INTEGER NOT NULL,
+    content TEXT,
+    PRIMARY KEY (url),
+    FOREIGN KEY (sourceId) REFERENCES NewsSource(sId)
+);
+
+selectNews:
+SELECT *
+FROM News
+INNER JOIN NewsSource ON News.sourceId = NewsSource.sId
+LIMIT :page * :pageSize, :pageSize;
+
+selectNewsByUrl:
+SELECT *
+FROM News
+INNER JOIN NewsSource ON News.sourceId = NewsSource.sId
+WHERE News.url = :url;
+
+insertNewsItem:
+INSERT INTO News
+VALUES ?;

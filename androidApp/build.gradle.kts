@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
     implementation(Dependencies.Android.material)
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.AndroidX.constraint)

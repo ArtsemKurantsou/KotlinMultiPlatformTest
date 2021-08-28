@@ -1,8 +1,17 @@
 plugins {
-    id("kotlin-platform-common")
+    kotlin("multiplatform")
 }
 
-dependencies {
-    implementation(Dependencies.KotlinX.coroutinesCore)
-    implementation(Dependencies.KotlinX.datetime)
+kotlin {
+    jvm()
+    ios()
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(Dependencies.KotlinX.coroutinesCore)
+                implementation(Dependencies.KotlinX.datetime)
+            }
+        }
+    }
 }

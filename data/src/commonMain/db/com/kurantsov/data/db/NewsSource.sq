@@ -1,0 +1,9 @@
+CREATE TABLE NewsSource (
+    sId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    PRIMARY KEY (sId)
+);
+
+insertSource:
+INSERT INTO NewsSource
+VALUES ?;
