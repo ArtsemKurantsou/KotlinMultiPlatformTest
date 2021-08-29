@@ -24,6 +24,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Dependencies.KotlinX.coroutinesCore)
+                implementation(Dependencies.Koin.core)
+                implementation(Dependencies.KotlinX.datetime)
+                api(Dependencies.Kermit.kermit)
+                implementation(project(":data"))
+                implementation(project(":domain"))
             }
         }
         val commonTest by getting {
@@ -35,6 +40,18 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Dependencies.KotlinX.coroutinesAndroid)
+                implementation(Dependencies.Android.material)
+                implementation(Dependencies.AndroidX.appcompat)
+                implementation(Dependencies.AndroidX.constraint)
+                implementation(Dependencies.AndroidX.coreKtx)
+                implementation(Dependencies.AndroidX.activityKtx)
+                implementation(Dependencies.AndroidX.fragmentKtx)
+                implementation(Dependencies.AndroidX.cardView)
+                implementation(Dependencies.AndroidX.recycler)
+                implementation(Dependencies.SqlDelight.androidDriver)
+                implementation(Dependencies.Koin.core)
+                implementation(Dependencies.Koin.android)
+                implementation(Dependencies.Glide.runtime)
             }
         }
         val androidTest by getting {
@@ -43,7 +60,11 @@ kotlin {
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+        val iosMain by getting {
+            dependencies {
+                implementation(Dependencies.SqlDelight.nativeDriver)
+            }
+        }
         val iosTest by getting
     }
 }
@@ -54,5 +75,9 @@ android {
     defaultConfig {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
+        buildConfigField("String", "API_KEY", "\"${Secrets.API_KEY}\"")
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }

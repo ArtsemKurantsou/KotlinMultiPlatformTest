@@ -5,8 +5,9 @@ import com.kurantsov.domain.entity.NewsItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimePeriod
 import kotlin.coroutines.CoroutineContext
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 
 class NewsRepositoryImpl(
     private val remoteStore: RemoteNewsDataSource,
@@ -22,7 +23,7 @@ class NewsRepositoryImpl(
         return@withContext if (shouldUpdatePage(page)) {
             val news = remoteStore.getNews(page, pageSize)
             localStore.saveNews(news)
-            pagesUpdatesTime[page] = currentTimeMillis()
+            setPageUpdated(page)
             news
         } else {
             localStore.getNews(page, pageSize)
@@ -38,12 +39,22 @@ class NewsRepositoryImpl(
                 || currentTimeMillis() - pagesUpdatesTime[page] >= updatePeriodMilliseconds
     }
 
+    private fun setPageUpdated(page: Int) {
+        val timeUpdated = currentTimeMillis()
+        if (page < pagesUpdatesTime.size) {
+            pagesUpdatesTime[page] = timeUpdated
+        } else {
+            pagesUpdatesTime.add(page, timeUpdated)
+        }
+    }
+
     private fun currentTimeMillis(): Long {
         return Clock.System.now().toEpochMilliseconds()
     }
 
     private companion object {
-        private val DEFAULT_UPDATE_PERIOD = DateTimePeriod(hours = 1).seconds * 1000L
+        @OptIn(ExperimentalTime::class)
+        private val DEFAULT_UPDATE_PERIOD = Duration.hours(1).inWholeMilliseconds
         private const val DEFAULT_PAGE_SIZE = 50
     }
 }

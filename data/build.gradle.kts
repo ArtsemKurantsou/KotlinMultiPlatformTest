@@ -32,6 +32,9 @@ kotlin {
                 implementation(Dependencies.KotlinX.serializationJson)
                 implementation(Dependencies.Ktor.core)
                 implementation(Dependencies.Ktor.serialization)
+                implementation(Dependencies.Ktor.logging)
+
+                implementation(Dependencies.Kermit.kermit)
 
                 implementation(Dependencies.SqlDelight.runtime)
             }
@@ -45,7 +48,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Dependencies.Ktor.android)
-                implementation(Dependencies.SqlDelight.androidDriver)
             }
         }
         val androidTest by getting {
@@ -57,7 +59,6 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(Dependencies.Ktor.iOS)
-                implementation(Dependencies.SqlDelight.nativeDriver)
             }
         }
         val iosTest by getting

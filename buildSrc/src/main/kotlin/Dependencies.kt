@@ -9,14 +9,17 @@ object Dependencies {
 
     object KotlinX {
         private const val coroutinesVersion = "1.5.1-native-mt"
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+        const val coroutinesCore =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val coroutinesAndroid =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
         private const val datetimeVersion = "0.2.1"
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:$datetimeVersion"
 
         private const val serializationJsonVersion = "1.2.2"
-        const val serializationJson = "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationJsonVersion"
+        const val serializationJson =
+            "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationJsonVersion"
     }
 
     object Android {
@@ -32,6 +35,16 @@ object Dependencies {
         const val appcompat = "androidx.appcompat:appcompat:$appcompatVersion"
         private const val constraintVersion = "2.1.0"
         const val constraint = "androidx.constraintlayout:constraintlayout:$constraintVersion"
+        private const val activityVersion = "1.3.1"
+        const val activityKtx = "androidx.activity:activity-ktx:$activityVersion"
+        private const val fragmentVersion = "1.3.6"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragmentVersion"
+        private const val coreVersion = "1.6.0"
+        const val coreKtx = "androidx.core:core-ktx:$coreVersion"
+        private const val cardViewVersion = "1.0.0"
+        const val cardView = "androidx.cardview:cardview:$cardViewVersion"
+        private const val recyclerVersion = "1.2.1"
+        const val recycler = "androidx.recyclerview:recyclerview:$recyclerVersion"
     }
 
     object SqlDelight {
@@ -48,5 +61,23 @@ object Dependencies {
         const val android = "io.ktor:ktor-client-android:$ktorVersion"
         const val iOS = "io.ktor:ktor-client-ios:$ktorVersion"
         const val serialization = "io.ktor:ktor-client-serialization:$ktorVersion"
+        const val logging = "io.ktor:ktor-client-logging:$ktorVersion"
+    }
+
+    object Koin {
+        private const val koinVersion = "3.1.2"
+        const val core = "io.insert-koin:koin-core:$koinVersion"
+        const val android = "io.insert-koin:koin-android:$koinVersion"
+    }
+
+    object Glide {
+        private const val glideVersion = "4.12.0"
+        const val runtime = "com.github.bumptech.glide:glide:$glideVersion"
+        const val processor = "com.github.bumptech.glide:compiler:$glideVersion"
+    }
+
+    object Kermit {
+        private const val kermitVersion = "0.3.0-m1"
+        const val kermit = "co.touchlab:kermit:$kermitVersion"
     }
 }

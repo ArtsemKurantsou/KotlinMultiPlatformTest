@@ -1,20 +1,26 @@
 package com.kurantsov.kmptest.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kurantsov.kmptest.Greeting
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import com.kurantsov.kmptest.mvp.BaseActivityNavigator
+import com.kurantsov.kmptest.mvp.Navigator
+import com.kurantsov.kmptest.mvp.NavigatorProvider
+import com.kurantsov.kmptest.news.NewsFragment
 
-fun greet(): String {
-    return Greeting().greeting()
-}
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigatorProvider {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                replace(R.id.container, NewsFragment())
+            }
+        }
+    }
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+    override fun provide(): Navigator {
+        return BaseActivityNavigator(this, R.id.container)
     }
 }

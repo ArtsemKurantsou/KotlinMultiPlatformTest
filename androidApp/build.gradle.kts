@@ -5,12 +5,14 @@ plugins {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(project(":domain"))
-    implementation(project(":data"))
     implementation(Dependencies.Android.material)
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.AndroidX.constraint)
     implementation(Dependencies.KotlinX.coroutinesAndroid)
+    implementation(Dependencies.Koin.core)
+    implementation(Dependencies.AndroidX.coreKtx)
+    implementation(Dependencies.AndroidX.activityKtx)
+    implementation(Dependencies.AndroidX.fragmentKtx)
 }
 
 android {

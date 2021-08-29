@@ -51,8 +51,8 @@ class LocalNewsDataSourceImpl(
                     )
                 }
                 .forEach {
-                database.newsQueries.insertNewsItem(it)
-            }
+                    database.newsQueries.insertNewsItem(it)
+                }
         }
     }
 

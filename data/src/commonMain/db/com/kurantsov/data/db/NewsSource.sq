@@ -5,5 +5,5 @@ CREATE TABLE NewsSource (
 );
 
 insertSource:
-INSERT INTO NewsSource
+INSERT OR REPLACE INTO NewsSource
 VALUES ?;
