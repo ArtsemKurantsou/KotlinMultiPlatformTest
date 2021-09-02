@@ -23,7 +23,7 @@ object Dependencies {
     }
 
     object Android {
-        private const val pluginVersion = "7.0.1"
+        private const val pluginVersion = "7.0.2"
         const val plugin = "com.android.tools.build:gradle:$pluginVersion"
 
         private const val materialVersion = "1.4.0"

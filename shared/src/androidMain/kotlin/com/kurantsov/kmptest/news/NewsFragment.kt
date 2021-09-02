@@ -19,7 +19,7 @@ class NewsFragment :
     private val binding: FragmentNewsBinding get() = requireNotNull(_binding)
 
     override fun createPresenter(args: Bundle?): NewsContract.Presenter? {
-        val presenter by inject<NewsPresenter>()
+        val presenter by inject<NewsContract.Presenter>()
         return presenter
     }
 

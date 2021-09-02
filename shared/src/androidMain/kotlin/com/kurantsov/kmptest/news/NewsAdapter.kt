@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.kurantsov.domain.entity.NewsItem
 import com.kurantsov.kmptest.R
 import com.kurantsov.kmptest.databinding.ItemNewsBinding
+import com.kurantsov.kmptest.utils.toDisplayFormat
 
 class NewsAdapter(
     private val items: List<NewsItem>,
@@ -48,7 +49,7 @@ class NewsAdapter(
                 }
                 tvTitle.text = item.title
                 tvSource.text = item.source.name
-                tvDate.text = item.publishDate.toString()
+                tvDate.text = item.publishDate.toDisplayFormat()
             }
         }
     }

@@ -9,6 +9,7 @@ import com.kurantsov.domain.entity.NewsItem
 import com.kurantsov.kmptest.R
 import com.kurantsov.kmptest.databinding.FragmentNewsItemBinding
 import com.kurantsov.kmptest.mvp.BaseFragmentView
+import com.kurantsov.kmptest.utils.toDisplayFormat
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
@@ -30,7 +31,7 @@ class NewsItemFragment : BaseFragmentView<NewsItemContract.View, NewsItemContrac
 
     override fun createPresenter(args: Bundle?): NewsItemContract.Presenter? {
         val newsItemId = args?.getString(ARG_NEWS_ITEM_ID) ?: return null
-        val presenter: NewsItemPresenter by inject { parametersOf(newsItemId) }
+        val presenter: NewsItemContract.Presenter by inject { parametersOf(newsItemId) }
         return presenter
     }
 
@@ -47,7 +48,7 @@ class NewsItemFragment : BaseFragmentView<NewsItemContract.View, NewsItemContrac
             tvSource.text = sequenceOf(item.source.name, item.author)
                 .filterNotNull()
                 .joinToString(separator = "\n")
-            tvDate.text = item.publishDate.toString()
+            tvDate.text = item.publishDate.toDisplayFormat()
             if (item.imageUrl != null) {
                 Glide.with(this@NewsItemFragment)
                     .load(item.imageUrl)
