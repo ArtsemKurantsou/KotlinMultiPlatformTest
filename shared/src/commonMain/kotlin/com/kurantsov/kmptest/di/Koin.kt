@@ -9,8 +9,11 @@ import com.kurantsov.data.db.AppDatabase
 import com.kurantsov.data.ktor.RemoteNewsDataSourceImpl
 import com.kurantsov.data.sqldelight.LocalNewsDataSourceImpl
 import com.kurantsov.domain.NewsRepository
+import com.kurantsov.kmptest.news.NewsContract
 import com.kurantsov.kmptest.news.NewsPresenter
+import com.kurantsov.kmptest.newsitem.NewsItemContract
 import com.kurantsov.kmptest.newsitem.NewsItemPresenter
+import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.core.logger.Logger
@@ -19,8 +22,8 @@ import org.koin.core.module.Module
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
-fun initKoin(appModule: Module) {
-    startKoin {
+fun initKoin(appModule: Module): KoinApplication {
+    return startKoin {
         properties(mapOf("API_KEY" to provideApiKey()))
         modules(
             appModule,
@@ -53,8 +56,8 @@ private fun newsModule(): Module {
         }
         single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
 
-        factory { NewsPresenter(get(), get { parametersOf("NewsPresenter") }) }
-        factory { params ->
+        factory<NewsContract.Presenter> { NewsPresenter(get(), get { parametersOf("NewsPresenter") }) }
+        factory<NewsItemContract.Presenter> { params ->
             NewsItemPresenter(
                 params.get(),
                 get(),

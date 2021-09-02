@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -62,10 +63,21 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
+                api(Dependencies.Kermit.kermit)
                 implementation(Dependencies.SqlDelight.nativeDriver)
+                implementation(Dependencies.KotlinX.coroutinesCore) {
+                    version { strictly("1.5.1-native-mt") }
+                }
             }
         }
         val iosTest by getting
+    }
+    targets.withType<KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            isStatic = false // SwiftUI preview requires dynamic framework
+            export(Dependencies.Kermit.kermit)
+            transitiveExport = true
+        }
     }
 }
 

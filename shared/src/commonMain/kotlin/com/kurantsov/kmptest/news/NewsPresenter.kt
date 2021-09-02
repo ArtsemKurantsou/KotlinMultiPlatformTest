@@ -4,6 +4,7 @@ import co.touchlab.kermit.Kermit
 import com.kurantsov.domain.NewsRepository
 import com.kurantsov.domain.entity.NewsItem
 import com.kurantsov.domain.interactor.GetNewsInteractor
+import kotlin.native.concurrent.ThreadLocal
 
 class NewsPresenter(
     private val repository: NewsRepository,

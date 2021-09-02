@@ -6,8 +6,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlin.coroutines.CoroutineContext
+import kotlin.native.concurrent.ThreadLocal
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
+
+@ThreadLocal
+private val pagesUpdatesTime: MutableList<Long> = mutableListOf()
 
 class NewsRepositoryImpl(
     private val remoteStore: RemoteNewsDataSource,
@@ -16,8 +20,6 @@ class NewsRepositoryImpl(
     private val pageSize: Int = DEFAULT_PAGE_SIZE,
     private val context: CoroutineContext = Dispatchers.Default
 ) : NewsRepository {
-
-    private var pagesUpdatesTime: MutableList<Long> = mutableListOf()
 
     override suspend fun getNews(page: Int): List<NewsItem> = withContext(context) {
         return@withContext if (shouldUpdatePage(page)) {
